@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * isdigit - check if upper.
  * @c: char to be checked
