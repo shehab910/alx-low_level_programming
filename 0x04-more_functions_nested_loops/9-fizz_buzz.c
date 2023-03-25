@@ -26,7 +26,10 @@ int main(void)
 				printf("Buzz");
 			}
 		}
-		printf(" ");
+		if (i != 100)
+			printf(" ");
+		else
+			printf("\n");
 	}
 	return (0);
 }
