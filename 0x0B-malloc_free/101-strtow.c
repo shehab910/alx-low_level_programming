@@ -35,9 +35,18 @@ int count_words(char *str)
 char **strtow(char *str)
 {
 	char **words;
-	int i = 0, j = 0, k = 0, len = 0, count = 0;
+	int i = 0, j = 0, k = 0, c = 0, allSpace = 1, len = 0, count = 0;
 
 	if (str == NULL || *str == '\0')
+		return (NULL);
+
+	while (str[c] != '\0')
+	{
+		if (str[c] != ' ')
+			allSpace = 0;
+		c++;
+	}
+	if (allSpace)
 		return (NULL);
 
 	count = count_words(str);
