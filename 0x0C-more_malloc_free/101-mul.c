@@ -1,41 +1,118 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
- * main -multiplies two positive numbers.
- * @argc: number of arguments
- * @argv: array of arguments
- * Usage: mul num1 num2
- * num1 and num2 will be passed in base 10
- * Print the result, followed by a new line
- * If the number of arguments is incorrect, print Error,
- * followed by a new line, and exit with a status of 98
- * num1 and num2 should only be composed of digits.
- * If not, print Error, followed by a new line,
- * and exit with a status of 98
- * You are allowed to use more than 5 functions in your file
- * Return: Always 0.
+ * _isdigit - Checks if a character is a digit.
+ * @c: The character to check.
+ *
+ * Return: 1 if c is a digit, 0 otherwise.
  */
-int main(int argc, char **argv)
+int _isdigit(int c)
 {
-	int i, j, mul;
+	return (c >= '0' && c <= '9');
+}
+
+/**
+ * _strlen - Computes the length of a string.
+ * @s: The string to measure.
+ *
+ * Return: The length of s.
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (*s)
+	{
+		len++;
+		s++;
+	}
+
+	return (len);
+}
+
+/**
+ * _puts - Prints a string to standard output.
+ * @s: The string to print.
+ */
+void _puts(char *s)
+{
+	while (*s)
+	{
+		putchar(*s);
+		s++;
+	}
+}
+
+/**
+ * print_error - Prints an error message to standard error and exits.
+ */
+void print_error(void)
+{
+	_puts("Error\n");
+	exit(98);
+}
+
+/**
+ * main - Multiplies two positive numbers.
+ * @argc: The number of command-line arguments.
+ * @argv: An array of command-line argument strings.
+ *
+ * Return: 0 on success, 98 on error.
+ */
+int main(int argc, char *argv[])
+{
+	char *num1, *num2, *res;
+	int len1, len2, lenres, carry, n1, n2, prod, i, j;
 
 	if (argc != 3)
-	{
-		printf("Error\n");
+		print_error();
+
+	num1 = argv[1];
+	num2 = argv[2];
+
+	len1 = _strlen(num1);
+	len2 = _strlen(num2);
+	lenres = len1 + len2;
+	res = malloc(lenres + 1);
+
+	if (!res)
 		return (1);
-	}
-	for (i = 1; i < argc; i++)
+
+	for (i = 0; i < lenres; i++)
+		res[i] = '0';
+
+	res[lenres] = '\0';
+
+	for (i = len1 - 1; i >= 0; i--)
 	{
-		for (j = 0; argv[i][j] != '\0'; j++)
+		if (!_isdigit(num1[i]))
+			print_error();
+
+		n1 = num1[i] - '0';
+		carry = 0;
+
+		for (j = len2 - 1; j >= 0; j--)
 		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
+			if (!_isdigit(num2[j]))
+				print_error();
+
+			n2 = num2[j] - '0';
+			prod = n1 * n2 + carry + (res[i + j + 1] - '0');
+			carry = prod / 10;
+			res[i + j + 1] = (prod % 10) + '0';
 		}
+
+		res[i + j + 1] = carry + '0';
 	}
-	mul = atoi(argv[1]) * atoi(argv[2]);
-	printf("%d\n", mul);
+
+	while (*res == '0' && *(res + 1))
+		res++;
+
+	_puts(res);
+	putchar('\n');
+
+	free(res);
+
 	return (0);
 }
