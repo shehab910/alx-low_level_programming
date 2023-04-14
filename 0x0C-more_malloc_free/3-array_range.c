@@ -8,6 +8,8 @@
  * ordered from min to max
  * If min > max, return NULL
  * If malloc fails, return NULL
+ * @min: minimum value
+ * @max: maximum value
  * Return: the pointer to the newly created array
  */
 int *array_range(int min, int max)

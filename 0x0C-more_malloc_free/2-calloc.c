@@ -9,6 +9,8 @@
  * The memory is set to zero
  * If nmemb or size is 0, then _calloc returns NULL
  * If malloc fails, then _calloc returns NULL
+ * @nmemb: number of elements
+ * @size: size of each element
  * Return: pointer to the allocated memory.
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
