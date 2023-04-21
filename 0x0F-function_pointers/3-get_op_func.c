@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "3-calc.h"
 
 /**
@@ -14,12 +13,13 @@ int (*get_op_func(char *s))(int, int)
 		{"-", op_sub},
 		{"*", op_mul},
 		{"/", op_div},
-		{"%", op_mod}};
+		{"%", op_mod},
+		{NULL, NULL}};
 	int i;
 
 	for (i = 0; i < 5; i++)
 	{
-		if (s[0] == ops[i].op[0] && s[1] == '\0')
+		if (s && s[0] == ops[i].op[0] && !s[1])
 			return (ops[i].f);
 	}
 	return (NULL);
