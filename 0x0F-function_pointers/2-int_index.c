@@ -10,6 +10,9 @@
  * int_index returns the index of the first
  * element for which the cmp function
  * does not return 0
+ * @array: array of integers
+ * @size: size of array
+ * @cmp: pointer to function
  * Return: if no element matches, return -1
  * If size <= 0, return -1
  */
