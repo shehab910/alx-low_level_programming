@@ -5,6 +5,7 @@
 /**
  * add_node - adds a new node at the beginning of a list_t list.
  * @head: the head
+ * @str: new string to add
  * str needs to be duplicated
  * You are allowed to use strdup
  * Return: the address of the new element, or NULL if it failed
