@@ -4,6 +4,7 @@
 
 /**
  * reverse_listint - reverses a listint_t linked list.
+ * @head: pointer to the first node of the list
  * You are not allowed to use more than 1 loop.
  * You are not allowed to use malloc, free or arrays
  * You can only declare a maximum of two variables in
