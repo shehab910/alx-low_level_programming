@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "main.h"
 /**
  * get_bit - value of a bit at a given index.
  * @n: number to convert
@@ -11,10 +9,11 @@
 int get_bit(unsigned long int n, unsigned int index)
 {
 	unsigned long int mask = 1;
-	int size = sizeof(unsigned long int) * 8;
+	unsigned int size = sizeof(unsigned long int) * 8;
 
 	if (index > size)
 		return (-1);
 	mask <<= index;
-	return (n & mask);
+	mask &= n;
+	return (mask >> index);
 }
