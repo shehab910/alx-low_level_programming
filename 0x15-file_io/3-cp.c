@@ -76,9 +76,13 @@ int main(int argc, char **argv)
 	}
 	file_from = argv[1];
 	file_to = argv[2];
-	fd_to = open(file_to, O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	fd_to = open(file_to, O_TRUNC | O_WRONLY);
 	if (fd_to == -1)
-		writeErr(file_to);
+	{
+		fd_to = open(file_to, O_CREAT | O_WRONLY, 0664);
+		if (fd_to == -1)
+			writeErr(file_to);
+	}
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 		readErr(file_from);
