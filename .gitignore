@@ -1,5 +1,4 @@
 *.out
 *.txt
-*main.c
 *putchar.c
 *.o
