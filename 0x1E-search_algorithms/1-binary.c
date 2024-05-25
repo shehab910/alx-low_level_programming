@@ -23,7 +23,8 @@ void print_array(int *array, size_t start, size_t end)
 }
 
 /**
- * binary_search - Searches for a value in a sorted array using the binary search algorithm
+ * binary_search - Searches for a value in a sorted array
+ * using the binary search algorithm
  * @array: Pointer to the first element of the array
  * @size: Number of elements in the array
  * @value: Value to search for
